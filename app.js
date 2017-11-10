@@ -18,6 +18,7 @@ overlayButton.addEventListener('click', function() {
   let buttonText = overlayButton.textContent;
   overlay.style.display = "none";
   overlay.classList.remove('start');
+  //resets phrases, buttons, hearts
   if (buttonText === "Play Again?") {
     ul.innerHTML = "";
     missedGuesses = 0;
