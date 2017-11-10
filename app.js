@@ -9,7 +9,7 @@ const ol = scoreboard.querySelector('ol');
 const hearts = ol.children;
 let missedGuesses = 0;
 
-const phrases = ["Cut corners", "Speak of the devil", "See eye to eye", "Break the Ice", "When pigs fly", "Break a leg", "Piece of cake", "Saved by the Bell", "Rule of Thumb", "Bite the Bullet"];
+const phrases = ["Cut corners", "Miss the boat", "See eye to eye", "Break the ice", "When pigs fly", "Break a leg", "Piece of cake", "On the ball", "Rule of Thumb", "Last straw"];
 
 let phraseArray = getRandomPhraseArray(phrases);
 addPhraseToDisplay(phraseArray);
