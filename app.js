@@ -9,7 +9,7 @@ const ol = scoreboard.querySelector('ol');
 const hearts = ol.children;
 let missedGuesses = 0;
 
-const phrases = ["Russel Westbrook", "Steven Adams", "Andre Robertson", "Paul George", "Carmelo Anthony"];
+const phrases = ["Cut corners", "Speak of the devil", "See eye to eye", "Break the Ice", "When pigs fly", "Break a leg", "Piece of cake", "Saved by the Bell", "Rule of Thumb", "Bite the Bullet"];
 
 let phraseArray = getRandomPhraseArray(phrases);
 addPhraseToDisplay(phraseArray);
@@ -104,7 +104,7 @@ function checkWin() {
     title.textContent = "You Lose";
     overlayButton.textContent = "Play Again?";
     overlay.style.display = "flex";
-  } 
+  }
 }
 
 // window.addEventListener("keypress", grabKeyPressed, false);
