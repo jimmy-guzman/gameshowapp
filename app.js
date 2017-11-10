@@ -3,20 +3,37 @@ const buttons = qwerty.getElementsByTagName('button');
 const phrase = document.getElementById('phrase');
 const ul = phrase.querySelector('ul');
 const overlay = document.getElementById('overlay');
-const startGame = overlay.querySelector('.btn__reset');
+const overlayButton = overlay.querySelector('.btn__reset');
 const scoreboard = document.getElementById('scoreboard');
 const ol = scoreboard.querySelector('ol');
-let tries = ol.children;
+const hearts = ol.children;
 let missedGuesses = 0;
 
 const phrases = ["Russel Westbrook", "Steven Adams", "Andre Robertson", "Paul George", "Carmelo Anthony"];
 
-startGame.addEventListener('click', function() {
+let phraseArray = getRandomPhraseArray(phrases);
+addPhraseToDisplay(phraseArray);
+
+overlayButton.addEventListener('click', function() {
+  let buttonText = overlayButton.textContent;
   overlay.style.display = "none";
+  overlay.classList.remove('start');
+  if (buttonText === "Play Again?") {
+    ul.innerHTML = "";
+    missedGuesses = 0;
+    for (let i = 0; i < 5; i++) {
+      hearts[i].style.display = 'inline-block';
+    }
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('chosen');
+      buttons[i].removeAttribute("disabled");
+    }
+    let phraseArray = getRandomPhraseArray(phrases);
+    addPhraseToDisplay(phraseArray);
+  }
 });
 
-const phraseArray = getRandomPhraseArray(phrases);
-addPhraseToDisplay(phraseArray);
+
 
 function getRandomPhraseArray(arr) {
   let randomPosition = Math.floor(Math.random() * (arr.length));
@@ -64,8 +81,8 @@ for (let i = 0; i < buttons.length; i++) {
     let buttonClicked = e.target;
     let letterFound = checkLetter(buttonClicked);
     if (letterFound === null) {
-      ol.removeChild(tries[0])
       missedGuesses += 1;
+      hearts[missedGuesses - 1].style.display = 'none';
     }
     checkWin();
   })
@@ -76,14 +93,18 @@ function checkWin() {
   let showClasses = ul.querySelectorAll('.show');
   let title = overlay.querySelector('.title');
   if (letterClasses.length === showClasses.length) {
-    overlay.classList.replace("start","win");
+    overlay.classList.remove("lose");
+    overlay.classList.add("win");
     title.textContent = "You Win!";
-    overlay.style.display = "";
+    overlayButton.textContent = "Play Again?";
+    overlay.style.display = "flex";
   } else if (missedGuesses >= 5) {
-    overlay.classList.replace("start", "lose");
+    overlay.classList.remove("win");
+    overlay.classList.add("lose");
     title.textContent = "You Lose";
-    overlay.style.display = "";
-  }
+    overlayButton.textContent = "Play Again?";
+    overlay.style.display = "flex";
+  } 
 }
 
 // window.addEventListener("keypress", grabKeyPressed, false);
