@@ -14,7 +14,7 @@ const phrases = ["Cut corners", "Miss the boat", "See eye to eye", "Break the ic
 let phraseArray = getRandomPhraseArray(phrases);
 addPhraseToDisplay(phraseArray);
 
-overlayButton.addEventListener('click', function() {
+overlayButton.addEventListener('click', function () {
   let buttonText = overlayButton.textContent;
   overlay.style.display = "none";
   overlay.classList.remove('start');
@@ -76,7 +76,7 @@ function checkLetter(buttonClicked) {
 }
 
 for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function(e) {
+  buttons[i].addEventListener('click', function (e) {
     e.target.classList.add('chosen');
     e.target.setAttribute("disabled", "");
     let buttonClicked = e.target;
