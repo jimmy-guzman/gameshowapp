@@ -33,7 +33,7 @@ overlayButton.addEventListener("click", function () {
   if (buttonText === "Play Again?") {
     ul.innerHTML = "";
     missedGuesses = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < hearts.length; i++) {
       hearts[i].src = "images/liveHeart.png";
     }
     for (let i = 0; i < buttons.length; i++) {
