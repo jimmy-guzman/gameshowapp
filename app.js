@@ -6,7 +6,7 @@ const overlay = document.getElementById("overlay");
 const overlayButton = overlay.querySelector(".btn__reset");
 const scoreboard = document.getElementById("scoreboard");
 const ol = scoreboard.querySelector("ol");
-const hearts = ol.children;
+const hearts = ol.querySelectorAll("img");
 let missedGuesses = 0;
 
 const phrases = [
@@ -34,7 +34,7 @@ overlayButton.addEventListener("click", function () {
     ul.innerHTML = "";
     missedGuesses = 0;
     for (let i = 0; i < 5; i++) {
-      hearts[i].style.display = "inline-block";
+      hearts[i].src = "images/liveHeart.png";
     }
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("chosen");
@@ -92,7 +92,7 @@ for (let i = 0; i < buttons.length; i++) {
     let letterFound = checkLetter(buttonClicked);
     if (letterFound === null) {
       missedGuesses += 1;
-      hearts[missedGuesses - 1].style.display = "none";
+      hearts[hearts.length - missedGuesses].src = "images/lostHeart.png";
     }
     checkWin();
   });
