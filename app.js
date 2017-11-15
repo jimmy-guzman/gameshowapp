@@ -103,12 +103,14 @@ function checkWin() {
   let showClasses = ul.querySelectorAll(".show");
   let title = overlay.querySelector(".title");
   if (letterClasses.length === showClasses.length) {
+    //creates win overlay
     overlay.classList.remove("lose");
     overlay.classList.add("win");
     title.textContent = "You Win!";
     overlayButton.textContent = "Play Again?";
     overlay.style.display = "flex";
   } else if (missedGuesses >= 5) {
+  //creates lose overlay
     overlay.classList.remove("win");
     overlay.classList.add("lose");
     title.textContent = "You Lose";
