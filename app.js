@@ -27,10 +27,11 @@ addPhraseToDisplay(phraseArray);
 
 overlayButton.addEventListener("click", function () {
   let buttonText = overlayButton.textContent;
+  
   overlay.style.display = "none";
   overlay.classList.remove("start");
   //resets phrases, buttons, hearts
-  if (buttonText === "Play Again?") {
+  if (buttonText === "Play Again!") {
     ul.innerHTML = "";
     missedGuesses = 0;
     for (let i = 0; i < hearts.length; i++) {
@@ -69,6 +70,7 @@ function checkLetter(buttonClicked) {
   let buttonText = buttonClicked.textContent;
   let letters = ul.querySelectorAll(".letter");
   let letterFound;
+
   for (let i = 0; i < letters.length; i++) {
     let li = letters[i];
     let letter = li.textContent;
@@ -86,10 +88,12 @@ function checkLetter(buttonClicked) {
 
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function (e) {
-    e.target.classList.add("chosen");
-    e.target.setAttribute("disabled", "");
     let buttonClicked = e.target;
     let letterFound = checkLetter(buttonClicked);
+
+    buttonClicked.classList.add("chosen");
+    buttonClicked.setAttribute("disabled", "");
+
     if (letterFound === null) {
       missedGuesses += 1;
       hearts[hearts.length - missedGuesses].src = "images/lostHeart.png";
@@ -102,19 +106,20 @@ function checkWin() {
   let letterClasses = ul.querySelectorAll(".letter");
   let showClasses = ul.querySelectorAll(".show");
   let title = overlay.querySelector(".title");
+
   if (letterClasses.length === showClasses.length) {
     //creates win overlay
     overlay.classList.remove("lose");
     overlay.classList.add("win");
     title.textContent = "You Win!";
-    overlayButton.textContent = "Play Again?";
+    overlayButton.textContent = "Play Again!";
     overlay.style.display = "flex";
   } else if (missedGuesses >= 5) {
-  //creates lose overlay
+    //creates lose overlay
     overlay.classList.remove("win");
     overlay.classList.add("lose");
     title.textContent = "You Lose";
-    overlayButton.textContent = "Play Again?";
+    overlayButton.textContent = "Play Again!";
     overlay.style.display = "flex";
   }
 }
