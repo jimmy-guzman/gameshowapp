@@ -27,10 +27,10 @@ addPhraseToDisplay(phraseArray);
 
 overlayButton.addEventListener("click", function () {
   let buttonText = overlayButton.textContent;
-  
   overlay.style.display = "none";
   overlay.classList.remove("start");
-  //resets phrases, buttons, hearts
+
+  //resets random phrase, buttons, hearts
   if (buttonText === "Play Again!") {
     ul.innerHTML = "";
     missedGuesses = 0;
@@ -71,6 +71,7 @@ function checkLetter(buttonClicked) {
   let letters = ul.querySelectorAll(".letter");
   let letterFound;
 
+  //displays letter if user guessed correctly
   for (let i = 0; i < letters.length; i++) {
     let li = letters[i];
     let letter = li.textContent;
@@ -86,14 +87,15 @@ function checkLetter(buttonClicked) {
   }
 }
 
+//on screen keyboard button listener
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function (e) {
+    //highlights & disables button clicked
     let buttonClicked = e.target;
     let letterFound = checkLetter(buttonClicked);
-
     buttonClicked.classList.add("chosen");
     buttonClicked.setAttribute("disabled", "");
-
+    //removes heart if letter selected is incorrect
     if (letterFound === null) {
       missedGuesses += 1;
       hearts[hearts.length - missedGuesses].src = "images/lostHeart.png";
@@ -123,24 +125,3 @@ function checkWin() {
     overlay.style.display = "flex";
   }
 }
-
-// window.addEventListener("keypress", grabKeyPressed, false);
-//
-// function grabKeyPressed(e) {
-//    let charCode = e.charCode;
-//    let character = String.fromCharCode(charCode);
-//    checkLetter(character);
-//    disableButton(character);
-// }
-//
-//
-// function disableButton(character) {
-//   let qwertyButtons = qwerty.getElementsByTagName('button');
-//   for (let i = 0; i < qwertyButtons.length; i++) {
-//     let button = qwertyButtons[i];
-//     let buttonText = button.textContent;
-//     if (character === buttonText) {
-//       button.classList.add('chosen');
-//     }
-//   }
-// }
